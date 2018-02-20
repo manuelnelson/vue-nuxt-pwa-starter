@@ -47,9 +47,6 @@
 import {mapActions, mapGetters} from 'vuex';
   export default {
     auth: false,
-    created: () => {
-      console.log(this.loggedIn)
-    },
     computed: mapGetters({
       loggedIn: 'user/user'
     }),

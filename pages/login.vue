@@ -44,9 +44,6 @@
     auth: false,
     middleware: ['auth'],
     created(){
-      console.log(this.$auth.state.loggedIn);
-      //this.$auth.logout();
-      // console.log(this.$auth)
     },
     data () {
       return {
@@ -80,7 +77,6 @@
             this.$auth.state.loggedIn;
             this.$router.push({name:'index'});
           }).catch((err) => {
-            console.log(err)
             this.$store.commit('alert/addAlert', {message: "You are not authenticated to access that resource"}, {root:true})
           })
         }

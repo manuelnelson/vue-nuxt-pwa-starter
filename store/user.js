@@ -29,7 +29,7 @@ export const mutations = {
       state.token = payload.token;
     }    
   };
-  
+
 export const state = () => ({
     user:null,
     token: null,

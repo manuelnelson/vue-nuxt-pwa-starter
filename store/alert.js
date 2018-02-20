@@ -9,14 +9,12 @@ export const getters = {
 
 export const mutations = {
     addAlert: (state,payload) => {
-      console.log(payload)
       state.alerts.push(payload)
     },
     clearAlerts: (state) => {
       state.alerts = []
     },    
     clearAlert: (state, payload) => {
-      console.log(payload)
       state.alerts = state.alerts.filter(alert => alert != payload);
     }    
   };

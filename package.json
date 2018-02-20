@@ -19,7 +19,8 @@
     "@nuxtjs/pwa": "^2.0.5",
     "dotenv": "^5.0.0",
     "nuxt": "^1.0.0",
-    "vuetify": "^0.17.3"
+    "vue-picture-input": "^2.1.1",
+    "vuetify": "^1.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

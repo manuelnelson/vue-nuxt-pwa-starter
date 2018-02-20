@@ -15,9 +15,6 @@
 </template>
 <script>
 export default {
-  middleware: ['auth'],
-  mounted(){
-    console.log('tesaaa')
-  }
+  
 }
 </script>

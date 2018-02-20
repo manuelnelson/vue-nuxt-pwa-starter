@@ -7,45 +7,17 @@
       fixed
       app
     >
-      <v-list>
-        <v-list-tile
-          router
-          :to="item.to"
-          :key="i"
-          v-for="(item, i) in items"
-          exact
-        >
-          <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title v-text="item.title"></v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
     </v-navigation-drawer>
     <v-toolbar fixed app :clipped-left="clipped" class="primary white--text">
-      <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-btn
-        icon
+      <v-toolbar-side-icon class="white--text" @click="drawer = !drawer"></v-toolbar-side-icon>
+      <v-btn class="white--text"
+        icon 
         @click.stop="miniVariant = !miniVariant"
       >
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
       </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>remove</v-icon>
-      </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>menu</v-icon>
-      </v-btn>
     </v-toolbar>
     <v-content>
       <v-container>
@@ -76,22 +48,53 @@
 
 <script>
 import Alerts from '~/components/global/Alerts.vue'
-
+import {mapGetters} from 'vuex'
   export default {
-    data() {
+    computed:{
+      userid: () => context.$store.state.auth.user ? context.$store.state.auth.user.id : '' 
+    },
+    data(context) {
+      
       return {
         clipped: true,
         drawer: true,
         fixed: false,
-        items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'person', title: 'Login', to: '/login' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
-        ],
         miniVariant: true,
         right: true,
         rightDrawer: false,
-        title: 'Vuetify.js'
+        title: 'Vuetify.js',
+      //   items:[
+      //   { 
+      //     icon: 'person', 
+      //     title: 'Account', 
+      //     expand: false,
+      //     active: false,
+      //     visible:true,
+      //     action: 'local_activity',
+      //     subitems:[
+      //       { icon: 'person', title: 'Login', to: '/login', showWhenLoggedIn:false },
+      //       //not sure how to handle dynamic click events - for now since we only have logout we'll hardcode it
+      //       { icon: 'person', title: 'Profile', to: `/profile/${this.userid}`, showWhenLoggedIn:true },
+      //       { icon: 'person', title: 'Logout', click: 'true', showWhenLoggedIn:true }
+      //     ] 
+      //   },
+      //   { icon: 'bubble_chart',  title: 'Inspire', to: '/inspire', visible:true }
+      // ]      
+      }
+    },
+    methods: {
+      openMenu(item){
+        if(this.miniVariant && !item.active){
+          this.miniVariant = false;
+          item.active = true;
+        }
+        else if(!this.miniVariant){
+          item.active = !item.active;
+        }
+      },
+      logout(){
+        this.$auth.logout()
+        this.$router.push('/');
       }
     },
     components:{
