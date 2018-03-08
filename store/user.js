@@ -11,6 +11,12 @@ export const actions = {
             $that.$auth.setToken(response.token) 
             $that.$router.push({name:'index'})
         })
+    },
+    getUser({commit}, payload){
+        var $that = this;
+        this.$axios.get(`/users/${payload}`).then((response) =>{
+            commit('setUser', response.user)            
+        })
     }
 }
 
@@ -27,8 +33,11 @@ export const mutations = {
     setLogin: (state, payload) => {
       state.user = payload.user;
       state.token = payload.token;
-    }    
-  };
+    },
+    setUser: (state, payload) => {
+        state.user = payload.user;
+      }    
+    };
 
 export const state = () => ({
     user:null,

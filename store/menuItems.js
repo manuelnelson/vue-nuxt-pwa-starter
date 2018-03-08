@@ -5,6 +5,8 @@ export const actions = {
 
 export const getters = {
     items: state => state.items,
+    miniVariant: state => state.miniVariant,
+    accountOpen: state => state.accountOpen
   };
 
 export const mutations = {
@@ -25,6 +27,21 @@ export const mutations = {
         },
         { icon: 'bubble_chart',  title: 'Inspire', to: '/inspire', visible:true }
       ]
+    },
+    setMinivariant: (state, payload) => {
+      if(!payload)
+        state.miniVariant = !state.miniVariant;
+      else
+        state.miniVariant = payload;
+    },
+    closeGroups: (state) =>{
+      state.accountOpen = false;
+    },
+    setAccountOpen: (state, payload) => {
+      if(!payload)
+        state.accountOpen = !state.accountOpen;
+      else
+        state.accountOpen = payload;
     }
   };
   
@@ -45,4 +62,6 @@ export const state = () =>  ({
       },
       { icon: 'bubble_chart',  title: 'Inspire', to: '/inspire', visible:true }
     ],
+    miniVariant: false,
+    accountOpen: false
 })

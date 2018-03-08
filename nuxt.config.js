@@ -39,7 +39,8 @@ module.exports = {
   */
   plugins: [
     '@/plugins/vuetify',
-    '@/plugins/axios'
+    '@/plugins/axios',
+    '@/plugins/picture-input'
   ],
 
   /*
@@ -77,19 +78,11 @@ module.exports = {
     //proxy: true,
     baseURL: 'localhost:3333'
   },
-  // proxy: {
-  //   '/api/v1/users': { target: 'localhost:3333/api/v1/users' }
-  // },
-    // proxy: [
-  //   ['/api/', { target: 'http://api.example.com', pathRewrite: {'^/api/': ''} }]
-  // ],
-    // proxy: [
-  //   ['/api/', { target: env.API_URL }],
-  // ],
     /*
   ** Build configuration
   */
   build: {
+    vendor:['aws-sdk'],
     /*
     ** You can extend webpack config here
     */
@@ -106,7 +99,7 @@ module.exports = {
       if (ctx.isServer) {
         config.externals = [
           nodeExternals({
-            whitelist: [/^vuetify/]
+            whitelist: [/^vuetify/,/^vue-picture-input/]
           })
         ]
       }

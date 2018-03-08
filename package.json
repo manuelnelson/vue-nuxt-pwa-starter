@@ -17,7 +17,9 @@
     "@nuxtjs/axios": "^5.0.1",
     "@nuxtjs/proxy": "^1.1.4",
     "@nuxtjs/pwa": "^2.0.5",
+    "aws-sdk": "^2.198.0",
     "dotenv": "^5.0.0",
+    "fs": "^0.0.1-security",
     "nuxt": "^1.0.0",
     "vue-picture-input": "^2.1.1",
     "vuetify": "^1.0.1"
